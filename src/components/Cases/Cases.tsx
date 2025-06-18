@@ -326,7 +326,7 @@ const Cases: React.FC = () => {
   return (
     <CasesSection id="cases">
       <div className="container">
-        <SectionTitle>Больше о мотоциклах <span>Kayo</span></SectionTitle>
+        <SectionTitle>Больше о <span>мотоциклах Kayo</span></SectionTitle>
         <SectionSubtitle>
           Посмотрите видео мотоциклов в действии
         </SectionSubtitle>
