@@ -217,11 +217,18 @@ const Header: React.FC = () => {
     document.body.style.overflow = 'auto';
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <HeaderContainer>
       <div className="container">
         <HeaderInner>
-          <Logo>
+          <Logo onClick={scrollToTop} style={{ cursor: 'pointer' }}>
             ProTech<span>Moto</span>
           </Logo>
           <Nav isOpen={isMenuOpen}>
@@ -241,7 +248,7 @@ const Header: React.FC = () => {
             <LottieWrapper>
               <Lottie animationData={JumpWhatsApp} loop={true} style={{ width: '100%', height: '100%' }} />
             </LottieWrapper>
-            <ContactButton href="tel:+79203383324">+7 920 338-33-24</ContactButton>
+            <ContactButton href="https://wa.me/79203383324?text=Здравствуйте,%20интересует%20каталог%20мотоциклов%20Kayo">+7 920 338-33-24</ContactButton>
           </div>
           <MobileMenuButton onClick={toggleMenu} aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}>
             {isMenuOpen ? (
