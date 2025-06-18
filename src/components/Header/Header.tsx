@@ -161,6 +161,12 @@ const LottieWrapper = styled.div`
   @media (max-width: 768px) {
     display: none;
   }
+
+  /* Убираем синий круг при фокусе, если это ссылка */
+  &.no-outline:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
 `;
 
 const MenuDivider = styled.div`
@@ -245,7 +251,7 @@ const Header: React.FC = () => {
             </MenuContactInfo>
           </Nav>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <LottieWrapper>
+            <LottieWrapper as="a" className="no-outline" href="https://wa.me/79203383324?text=Здравствуйте,%20интересует%20каталог%20мотоциклов%20Kayo" target="_blank" rel="noopener noreferrer">
               <Lottie animationData={JumpWhatsApp} loop={true} style={{ width: '100%', height: '100%' }} />
             </LottieWrapper>
             <ContactButton href="https://wa.me/79203383324?text=Здравствуйте,%20интересует%20каталог%20мотоциклов%20Kayo">+7 920 338-33-24</ContactButton>
