@@ -241,7 +241,7 @@ const Header: React.FC = () => {
             <NavList>
               <NavItem onClick={closeMenu}><a href="#catalog">Каталог</a></NavItem>
               <NavItem onClick={closeMenu}><a href="#advantages">Преимущества</a></NavItem>
-              {/* <NavItem onClick={closeMenu}><a href="#cases">Кейсы</a></NavItem> */}
+              <NavItem onClick={closeMenu}><a href="#cases">Кейсы</a></NavItem>
               <NavItem onClick={closeMenu}><a href="#reviews">Отзывы</a></NavItem>
             </NavList>
             <MenuDivider />

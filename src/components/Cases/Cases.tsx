@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CaseItem } from '../../types';
 
 const CasesSection = styled.section`
-  padding: 80px 0;
+  padding: 40px 0;
   background-color: var(--gray-color);
 
   @media (max-width: 768px) {
@@ -87,12 +87,11 @@ const CaseCard = styled.div`
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   cursor: pointer;
-  height: 350px;
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
   max-width: 400px;
   margin: 0 auto;
+  height: 370px;
 
   @media (max-width: 768px) {
     max-width: 90%;
@@ -101,7 +100,6 @@ const CaseCard = styled.div`
     aspect-ratio: 3/4;
     margin: 0 auto;
   }
-  
   @media (max-width: 480px) {
     max-width: 100%;
   }
@@ -113,21 +111,20 @@ const CaseCard = styled.div`
 `;
 
 const CaseImage = styled.div<{ noOverlay?: boolean }>`
-  height: 100%;
+  width: 100%;
+  height: 220px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #000;
-  img, video {
+  img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 0;
-  }
-  ${CaseCard}:hover & img {
-    transform: scale(1.05);
+    display: block;
   }
   ${({ noOverlay }) =>
     !noOverlay && `
@@ -170,7 +167,11 @@ const PlayButton = styled.div`
 `;
 
 const CaseInfo = styled.div`
-  padding: 20px;
+  padding: 20px 20px 16px 20px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
 const CaseTitle = styled.h3`
@@ -244,27 +245,30 @@ const CloseButton = styled.button`
   z-index: 1001;
 `;
 
-const verticalVideos: CaseItem[] = [
+const horizontalVideos: CaseItem[] = [
   {
     id: 'v1',
-    title: 'Kayo Ninja H2R',
-    description: 'Обзор легендарного Kayo Ninja H2R',
-    image: '/images/V1.mp4',
-    type: 'video'
+    title: 'KAYO K2 Pro на самой сложной гонке в горах',
+    description: 'Skhauat в Карачаево-Черкесии',
+    image: 'https://rutube.ru/play/embed/5b6effb88960733a728914d9b77c151c',
+    type: 'rutube',
+    poster: '/images/baner_vid/k2pro.png'
   },
   {
     id: 'v2',
-    title: 'Kayo Versys 1000',
-    description: 'Тест-драйв Kayo Versys 1000',
-    image: '/images/video2.mp4',
-    type: 'video'
+    title: 'Как выглядит завод мототехники KAYO изнутри?',
+    description: 'И как собирают мотоциклы? Технологии, которые поражают',
+    image: 'https://rutube.ru/play/embed/31774f3901e6499df858e484ef368fdc',
+    type: 'rutube',
+    poster: '/images/baner_vid/zavod.png'
   },
   {
     id: 'v3',
-    title: 'Kayo Z900',
-    description: 'Обзор Kayo Z900',
-    image: '/images/video3.mp4',
-    type: 'video'
+    title: 'Как KAYO KT 300 2T Miura проехал стадион',
+    description: 'Полный репортаж с Суперэндуро Буйные есть?',
+    image: 'https://rutube.ru/play/embed/144ac6d367bfe9a3e36d7da8179549e3',
+    type: 'rutube',
+    poster: '/images/baner_vid/by.png'
   }
 ];
 
@@ -322,20 +326,33 @@ const Cases: React.FC = () => {
   return (
     <CasesSection id="cases">
       <div className="container">
-        <SectionTitle>Наши <span>видео</span></SectionTitle>
+        <SectionTitle>Больше о мотоциклах <span>Kayo</span></SectionTitle>
         <SectionSubtitle>
-          Посмотрите видео наших мотоциклов в действии
+          Посмотрите видео мотоциклов в действии
         </SectionSubtitle>
 
         <CasesGrid>
-          {verticalVideos.map((caseItem) => (
+          {horizontalVideos.map((caseItem) => (
             <CaseCard 
               key={caseItem.id} 
               onClick={() => openModal(caseItem)}
             >
               <CaseImage noOverlay>
-                <AutoPlayVideo src={caseItem.image} />
+                <img 
+                  src={caseItem.poster}
+                  alt={caseItem.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+                <PlayButton>
+                  <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </PlayButton>
               </CaseImage>
+              <CaseInfo>
+                <CaseTitle>{caseItem.title}</CaseTitle>
+                <CaseDescription>{caseItem.description}</CaseDescription>
+              </CaseInfo>
             </CaseCard>
           ))}
         </CasesGrid>
@@ -344,12 +361,12 @@ const Cases: React.FC = () => {
           <ModalContent onClick={(e) => e.stopPropagation()}>
             <CloseButton onClick={closeModal}>&times;</CloseButton>
             {selectedCase && (
-              <video
+              <iframe
                 src={selectedCase.image}
-                controls
-                autoPlay
-                loop
-                style={{ maxWidth: '100%', maxHeight: '90vh' }}
+                title={selectedCase.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ width: '100%', aspectRatio: '16/9' }}
               />
             )}
           </ModalContent>

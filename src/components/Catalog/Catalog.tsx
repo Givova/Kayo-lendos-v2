@@ -407,13 +407,13 @@ const productsData: ProductModel[] = [
       '1 цилиндра', '4 такта',
       '6-ступенчатая 1-N-2-3-4-5-6', '114 кг'
     ],
-    image: 'images/K6-R/1.jpg',
+    image: '/images/K6-R/1.jpg',
     images: [
-      'images/K6-R/1.jpg',
-      'images/K6-R/2.jpg',
-      'images/K6-R/3.jpg',
-      'images/K6-R/4.jpg',
-      'images/K6-R/5.jpg'
+      '/images/K6-R/1.jpg',
+      '/images/K6-R/2.jpg',
+      '/images/K6-R/3.jpg',
+      '/images/K6-R/4.jpg',
+      '/images/K6-R/5.jpg'
     ],
   },
   {

@@ -65,7 +65,7 @@ const App = (): JSX.Element => {
         <Hero />
         <Advantages />
         <Catalog />
-        {/* <Cases /> */}
+        <Cases />
         <Reviews />
         <CatalogRequest />
       </main>

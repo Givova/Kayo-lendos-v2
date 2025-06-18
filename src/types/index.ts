@@ -23,8 +23,9 @@ export interface CaseItem {
     description: string;
     image: string;
     link?: string;
-    type?: 'photo' | 'video';
+    type?: 'photo' | 'video' | 'youtube' | 'rutube';
     videoUrl?: string;
+    poster?: string;
 }
 
 export interface ReviewItem {
